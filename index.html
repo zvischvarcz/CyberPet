@@ -10,8 +10,8 @@
     <div id="introWrap">
         <div><h1>Choose your pet:</h1></div>
         <div>
-            <input type="radio" id="dog-radio" name="cat-dog-radio">
-            <label for="dogRadio">Dog</label>
+            <input type="radio" id="dogRadio" name="cat-dog-radio">
+            <label for="dog-radio">Dog</label>
             <input type="radio" id="catRadio" name="cat-dog-radio">
             <label for="cat-radio">Cat</label>
             <label for="name-input">Name:</label>
@@ -20,26 +20,33 @@
         </div>
     </div>
     <div id="dogWrap" class="hidden">
-        <h2>Name the dog</h2>
+        <h2 id="dogName"></h2>
         <img src="./dog-img.jpg">
-        <p>Health = 100</p>
-        <p>Hunger = 0</p>
-        <p>Thirst = 0</p>
-        <p>Happy = 100</p>
-        <button>Feed</button>
-        <button>Hydrate</button>
-        <button>Play fetch</button>
+        <p id="dogHealth">Health = 100</p>
+        <p id="dogHunger">Hunger = 100</p>
+        <p id="dogThirst">Thirst = 100</p>
+        <p id="dogHappy">Happy = 100</p>
+        <button id="dogFeed">Feed</button>
+        <button id="dogHydrate">Hydrate</button>
+        <button id="dogPlay">Play with wool</button>
     </div>
     <div id="catWrap"  class="hidden">
-        <h2>Name the cat</h2>
+        <h2 id="catName"></h2>
         <img src="./cat-img.jpg">
-        <p>Health = 100</p>
-        <p>Hunger = 0</p>
-        <p>Thirst = 0</p>
-        <p>content = 100</p>
-        <button>Feed</button>
-        <button>Hydrate</button>
-        <button>Play with wool</button>
+        <p id="catHealth">Health = 100</p>
+        <p id="catHunger">Hunger = 100</p>
+        <p id="catThirst">Thirst = 100</p>
+        <p id="catContent">Content = 100</p>
+        <button id="catFeed">Feed</button>
+        <button id="catHydrate">Hydrate</button>
+        <button id="catPlay">Play with wool</button>
+    </div>
+    <div>
+        <p id="deathScene"></p>
+    </div>
+    <div id="endGameWrap" class="hidden">
+        <h2>Do you want to play again??</h2>
+        <button>Yes</button>
     </div>
     
 
