@@ -6,24 +6,24 @@ const nameInput = document.getElementById("nameInput");
 const catWrap = document.getElementById("catWrap");
 const dogWrap = document.getElementById("dogWrap");
 const catName = document.getElementById("catName");
-const catHealth = document.getElementById("catHealth");
-const catHunger = document.getElementById("catHunger");
-const catThirst = document.getElementById("catThirst");
-const catContent = document.getElementById("catContent");
+const catHealth = document.getElementById("catHealthBar");
+const catHunger = document.getElementById("catHungerBar");
+const catThirst = document.getElementById("catThirstBar");
+const catContent = document.getElementById("catContentBar");
 const catFeed = document.getElementById("catFeed");
 const catHydrate = document.getElementById("catHydrate");
 const catPlay = document.getElementById("catPlay");
 const dogName = document.getElementById("dogName");
-const dogHealth = document.getElementById("dogHealth");
-const dogHunger = document.getElementById("dogHunger");
-const dogThirst = document.getElementById("dogThirst");
-const dogHappy = document.getElementById("dogHappy");
+const dogHealth = document.getElementById("dogHealthBar");
+const dogHunger = document.getElementById("dogHungerBar");
+const dogThirst = document.getElementById("dogThirstBar");
+const dogHappy = document.getElementById("dogHappyBar");
 const dogFeed = document.getElementById("dogFeed");
 const dogHydrate = document.getElementById("dogHydrate");
 const dogPlay = document.getElementById("dogPlay");
 const deathScene = document.getElementById("deathScene");
 const endGameWrap = document.getElementById("endGameWrap")
-
+const restartButton = document.getElementById("restartButton")
 
 
 
@@ -75,6 +75,9 @@ class Cat extends Animal {
 
 const endGame = () => {
     endGameWrap.classList.remove("hidden")
+    restartButton.addEventListener("click", () => {
+        window.location.reload();
+    })
 }
 
 
@@ -86,18 +89,18 @@ const createCat = (name) => {
     const timeoutStats = () => {
         if (playerCat.hunger == 0 || playerCat.thirst == 0 || playerCat.content == 0){
             playerCat.health = Math.max(playerCat.health - 5, 0);
-            catHealth.textContent = `Health = ${playerCat.health}`
+            catHealth.style.width = `${playerCat.health}%`;
             if (playerCat.health == 0){
                 deathScene.innerHTML = `Your beloved cat ${playerCat.name}, has died.`
                 endGame();
             }
     }
         playerCat.hunger = Math.max(playerCat.hunger - 5, 0);
-        catHunger.textContent = `Hunger = ${playerCat.hunger}`
+        catHunger.style.width = `${playerCat.hunger}%`;
         playerCat.thirst = Math.max(playerCat.thirst- 5, 0);
-        catThirst.textContent = `Thirst = ${playerCat.thirst}`
+        catThirst.style.width = `${playerCat.thirst}%`;
         playerCat.content = Math.max(playerCat.content - 5, 0);
-        catContent.textContent = `Content = ${playerCat.content}`
+        catContent.style.width = `${playerCat.content}%`;
         console.log(playerCat); 
         setTimeout(timeoutStats, 500);  
     }
@@ -124,18 +127,18 @@ const createDog = (name) => {
     const timeoutStats = () => {
         if (playerDog.hunger == 0 || playerDog.thirst == 0 || playerDog.happy == 0){
             playerDog.health = Math.max(playerDog.health - 5, 0);
-            dogHealth.textContent = `Health = ${playerDog.health}`
+            dogHealth.style.width = `${playerDog.health}%`;
             if (playerDog.health == 0){
                 deathScene.innerHTML = `Your beloved dog ${playerDog.name}, has died.`
                 endGame();
             }
     }
         playerDog.hunger = Math.max(playerDog.hunger - 5, 0);
-        dogHunger.textContent = `Hunger = ${playerDog.hunger}`
+        dogHunger.style.width = `${playerDog.hunger}%`;
         playerDog.thirst = Math.max(playerDog.thirst- 5, 0);
-        dogThirst.textContent = `Thirst = ${playerDog.thirst}`
+        dogThirst.style.width = `${playerDog.thirst}%`;
         playerDog.happy = Math.max(playerDog.happy - 5, 0);
-        dogHappy.textContent = `Happy = ${playerDog.happy}`
+        dogHappy.style.width = `${playerDog.happy}%`;
         console.log(playerDog); 
         setTimeout(timeoutStats, 500);  
     }

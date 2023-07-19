@@ -22,21 +22,58 @@
     <div id="dogWrap" class="hidden">
         <h2 id="dogName"></h2>
         <img src="./dog-img.jpg">
-        <p id="dogHealth">Health = 100</p>
-        <p id="dogHunger">Hunger = 100</p>
-        <p id="dogThirst">Thirst = 100</p>
-        <p id="dogHappy">Happy = 100</p>
+        <div class="bar-wrap">
+            <p>Health:</p>
+            <div id="dogHealth" class="dog-health">
+                <div id="dogHealthBar">
+                </div>
+            </div>
+            <p>Hunger:</p>
+            <div class="dog-health">
+                <div id="dogHungerBar">
+                </div>
+            </div>
+            <p>Thirst:</p>
+            <div class="dog-health">
+                <div id="dogThirstBar">
+                </div>
+            </div>
+            <p>Happiness:</p>
+            <div class="dog-health">
+                <div id="dogHappyBar">
+                </div>
+            </div>
+        </div>
         <button id="dogFeed">Feed</button>
         <button id="dogHydrate">Hydrate</button>
-        <button id="dogPlay">Play with wool</button>
+        <button id="dogPlay">Play Fetch</button>
     </div>
     <div id="catWrap"  class="hidden">
         <h2 id="catName"></h2>
         <img src="./cat-img.jpg">
-        <p id="catHealth">Health = 100</p>
-        <p id="catHunger">Hunger = 100</p>
-        <p id="catThirst">Thirst = 100</p>
-        <p id="catContent">Content = 100</p>
+        <div class="bar-wrap">
+            <p>Health:</p>
+            <div id="catHealth" class="cat-health">
+                
+                <div id="catHealthBar">
+                </div>
+            </div>
+            <p>Hunger:</p>
+            <div class="cat-health">
+                <div id="catHungerBar">
+                </div>
+            </div>
+            <p>Thirst:</p>
+            <div class="cat-health">
+                <div id="catThirstBar">
+                </div>
+            </div>
+            <p>Content:</p>
+            <div class="cat-health">
+                <div id="catContentBar">
+                </div>
+            </div>
+        </div>
         <button id="catFeed">Feed</button>
         <button id="catHydrate">Hydrate</button>
         <button id="catPlay">Play with wool</button>
@@ -45,8 +82,8 @@
         <p id="deathScene"></p>
     </div>
     <div id="endGameWrap" class="hidden">
-        <h2>Do you want to play again??</h2>
-        <button>Yes</button>
+        <h2>Do you want to play again?</h2>
+        <button id="restartButton">Yes</button>
     </div>
     
 
