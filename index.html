@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cyber Pet</title>
+</head>
+<body>
+    <div id="introWrap">
+        <div><h1>Choose your pet:</h1></div>
+        <div>
+            <input type="radio" id="dog-radio" name="cat-dog-radio">
+            <label for="dogRadio">Dog</label>
+            <input type="radio" id="catRadio" name="cat-dog-radio">
+            <label for="cat-radio">Cat</label>
+            <label for="name-input">Name:</label>
+            <input type="text" id="nameInput">
+            <button id="createButton">Create Pet!</button>
+        </div>
+    </div>
+    <div id="dogWrap" class="hidden">
+        <h2>Name the dog</h2>
+        <img src="./dog-img.jpg">
+        <p>Health = 100</p>
+        <p>Hunger = 0</p>
+        <p>Thirst = 0</p>
+        <p>Happy = 100</p>
+        <button>Feed</button>
+        <button>Hydrate</button>
+        <button>Play fetch</button>
+    </div>
+    <div id="catWrap"  class="hidden">
+        <h2>Name the cat</h2>
+        <img src="./cat-img.jpg">
+        <p>Health = 100</p>
+        <p>Hunger = 0</p>
+        <p>Thirst = 0</p>
+        <p>content = 100</p>
+        <button>Feed</button>
+        <button>Hydrate</button>
+        <button>Play with wool</button>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
