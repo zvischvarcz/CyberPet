@@ -24,6 +24,11 @@ const dogPlay = document.getElementById("dogPlay");
 const deathScene = document.getElementById("deathScene");
 const endGameWrap = document.getElementById("endGameWrap")
 const restartButton = document.getElementById("restartButton")
+const errorEmpty = document.getElementById("errorEmpty")
+const healthProgress = document.getElementById("healthPercent");
+const hungerProgress = document.getElementById("hungerPercent");
+const thirstProgress = document.getElementById("thirstPercent");
+const happyProgress = document.getElementById("happyPercent");
 
 
 
@@ -73,12 +78,12 @@ class Cat extends Animal {
 }
 
 
-const endGame = () => {
-    endGameWrap.classList.remove("hidden")
-    restartButton.addEventListener("click", () => {
-        window.location.reload();
-    })
-}
+// const endGame = () => {
+//     endGameWrap.classList.remove("hidden")
+//     restartButton.addEventListener("click", () => {
+//         window.location.reload();
+//     })
+// }
 
 
 
@@ -88,6 +93,7 @@ const createCat = (name) => {
     catName.textContent = `${name} The cat`
     const timeoutStats = () => {
         if (playerCat.hunger == 0 || playerCat.thirst == 0 || playerCat.content == 0){
+            
             playerCat.health = Math.max(playerCat.health - 5, 0);
             catHealth.style.width = `${playerCat.health}%`;
             if (playerCat.health == 0){
@@ -126,19 +132,25 @@ const createDog = (name) => {
     dogName.textContent = `${name} The dog`
     const timeoutStats = () => {
         if (playerDog.hunger == 0 || playerDog.thirst == 0 || playerDog.happy == 0){
+            
             playerDog.health = Math.max(playerDog.health - 5, 0);
             dogHealth.style.width = `${playerDog.health}%`;
+            healthProgress.textContent = `${playerDog.health}%`;
             if (playerDog.health == 0){
-                deathScene.innerHTML = `Your beloved dog ${playerDog.name}, has died.`
+                // deathScene.innerHTML = `Your beloved dog ${playerDog.name}, has died.`
                 endGame();
             }
-    }
+    }   
+        
         playerDog.hunger = Math.max(playerDog.hunger - 5, 0);
         dogHunger.style.width = `${playerDog.hunger}%`;
+        hungerProgress.textContent = `${playerDog.hunger}%`;
         playerDog.thirst = Math.max(playerDog.thirst- 5, 0);
         dogThirst.style.width = `${playerDog.thirst}%`;
+        thirstProgress.textContent = `${playerDog.thirst}%`;
         playerDog.happy = Math.max(playerDog.happy - 5, 0);
         dogHappy.style.width = `${playerDog.happy}%`;
+        happyProgress.textContent = `${playerDog.happy}%`;
         console.log(playerDog); 
         setTimeout(timeoutStats, 500);  
     }
@@ -161,12 +173,16 @@ const createDog = (name) => {
 
 
 createButton.addEventListener("click", () => {
-    introWrap.classList.add("hidden")
-    let nameChosen = nameInput.value;
-    if (catRadio.checked){
-        createCat(nameChosen)
-    } else if (dogRadio.checked){
-        createDog(nameChosen)
+    if((catRadio.checked == false && dogRadio.checked == false) || nameInput.value == ""){
+        errorEmpty.classList.remove("hidden")
+    } else{
+        introWrap.classList.add("hidden")
+        let nameChosen = nameInput.value;
+        if (catRadio.checked){
+            createCat(nameChosen)
+        } else if (dogRadio.checked){
+            createDog(nameChosen)
+        }
     }
 })
 

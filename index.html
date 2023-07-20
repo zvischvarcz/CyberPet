@@ -7,76 +7,109 @@
     <title>Cyber Pet</title>
 </head>
 <body>
-    <div id="introWrap">
-        <div><h1>Choose your pet:</h1></div>
+    <div id="introWrap" class="intro-wrap">
+        <div class="intro-item"><h1>Choose your pet</h1></div>
         <div>
             <input type="radio" id="dogRadio" name="cat-dog-radio">
             <label for="dog-radio">Dog</label>
             <input type="radio" id="catRadio" name="cat-dog-radio">
             <label for="cat-radio">Cat</label>
+        </div>
+        <div class="intro-item">
             <label for="name-input">Name:</label>
             <input type="text" id="nameInput">
+        </div class="intro-item">
             <button id="createButton">Create Pet!</button>
+            <p id="errorEmpty" class="hidden">Please choose an animal type and enter a name</p>
         </div>
     </div>
-    <div id="dogWrap" class="hidden">
-        <h2 id="dogName"></h2>
-        <img src="./dog-img.jpg">
-        <div class="bar-wrap">
-            <p>Health:</p>
-            <div id="dogHealth" class="dog-health">
-                <div id="dogHealthBar">
+    
+    <div id="dogWrap" class="hidden animal-wrap">
+        <div class="animal-wrap-inner">
+            <h2 id="dogName"></h2>
+            <img src="./dog-img.jpg">
+            <div class="bar-wrap">
+                <div class="each-bar-wrap">
+                    <p class="bar-text">Health:</p>
+                    <div id="dogHealth" class="dog-health">
+                        <div id="dogHealthBar">
+                            <p id="healthPercent"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="each-bar-wrap">
+                <p class="bar-text">Hunger:</p>
+                <div class="dog-health">
+                    <div id="dogHungerBar">
+                        <p id="hungerPercent"></p>
+                    </div>
+                </div>
+                </div>
+                <div class="each-bar-wrap">
+                <p class="bar-text">Thirst:</p>
+                <div class="dog-health">
+                    <div id="dogThirstBar">
+                        <p id="thirstPercent"></p>
+                    </div>
+                </div>
+                </div>
+                <div class="each-bar-wrap">
+                <p class="bar-text">Happiness:</p>
+                <div class="dog-health">
+                    <div id="dogHappyBar">
+                        <p id="happyPercent"></p>
+                    </div>
+                </div>
                 </div>
             </div>
-            <p>Hunger:</p>
-            <div class="dog-health">
-                <div id="dogHungerBar">
-                </div>
-            </div>
-            <p>Thirst:</p>
-            <div class="dog-health">
-                <div id="dogThirstBar">
-                </div>
-            </div>
-            <p>Happiness:</p>
-            <div class="dog-health">
-                <div id="dogHappyBar">
-                </div>
+            <div>
+                <button id="dogFeed" class="interact-button">Feed</button>
+                <button id="dogHydrate" class="interact-button">Hydrate</button>
+                <button id="dogPlay" class="interact-button">Play Fetch</button>
             </div>
         </div>
-        <button id="dogFeed">Feed</button>
-        <button id="dogHydrate">Hydrate</button>
-        <button id="dogPlay">Play Fetch</button>
     </div>
     <div id="catWrap"  class="hidden">
-        <h2 id="catName"></h2>
-        <img src="./cat-img.jpg">
-        <div class="bar-wrap">
-            <p>Health:</p>
-            <div id="catHealth" class="cat-health">
-                
-                <div id="catHealthBar">
+        <div class="animal-wrap-inner">
+            <h2 id="catName"></h2>
+            <img src="./cat-img.jpg">
+            <div class="bar-wrap">
+                <div class="each-bar-wrap">
+                    <p class="bar-text">Health:</p>
+                    <div id="catHealth" class="cat-health">
+                        
+                        <div id="catHealthBar">
+                        </div>
+                    </div>
+                </div>
+                <div class="each-bar-wrap">
+                    <p class="bar-text">Hunger:</p>
+                    <div class="cat-health">
+                        <div id="catHungerBar">
+                        </div>
+                    </div>
+                </div>
+                <div class="each-bar-wrap">
+                    <p class="bar-text">Thirst:</p>
+                    <div class="cat-health">
+                        <div id="catThirstBar">
+                        </div>
+                    </div>
+                </div>
+                <div class="each-bar-wrap">
+                    <p class="bar-text">Content:</p>
+                    <div class="cat-health">
+                        <div id="catContentBar">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p>Hunger:</p>
-            <div class="cat-health">
-                <div id="catHungerBar">
-                </div>
-            </div>
-            <p>Thirst:</p>
-            <div class="cat-health">
-                <div id="catThirstBar">
-                </div>
-            </div>
-            <p>Content:</p>
-            <div class="cat-health">
-                <div id="catContentBar">
-                </div>
+            <div>
+                <button id="catFeed" class="interact-button">Feed</button>
+                <button id="catHydrate" class="interact-button">Hydrate</button>
+                <button id="catPlay" class="interact-button">Play with wool</button>
             </div>
         </div>
-        <button id="catFeed">Feed</button>
-        <button id="catHydrate">Hydrate</button>
-        <button id="catPlay">Play with wool</button>
     </div>
     <div>
         <p id="deathScene"></p>

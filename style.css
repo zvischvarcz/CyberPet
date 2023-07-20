@@ -1,7 +1,62 @@
-.hidden {
-    display: none;
+@import url('https://fonts.googleapis.com/css2?family=Tektur&display=swap');
+
+body {
+  margin: 0;
+  height: 97vh;
+  background-color: rgb(212, 212, 212);
+  background-image: url(./background-image.png);
+  background-position-x: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Tektur', cursive;
 }
 
+.intro-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro-item {
+  margin: 5% 0; 
+}
+#createButton {
+  background-color: aqua;
+  border: none;
+  font-family: 'Tektur', cursive;
+  font-size: x-large;
+  font-weight: 900;
+  border-radius: 15%;
+  padding: 15px;
+}
+
+#createButton:hover {
+  background-color: rgb(0, 155, 155);
+}
+
+#errorEmpty{
+  color: red;
+}
+
+
+.animal-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.animal-wrap-inner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90%;
+}
+
+.each-bar-wrap {
+  display: flex;
+}
 
 
 img {
@@ -9,7 +64,13 @@ img {
 }
 
 .bar-wrap {
-    width: 25%
+    width: 30%;
+    margin: 5% 5% 2% 5%;
+}
+
+.bar-text{
+  min-width: 20%;
+  text-align: center;
 }
 
 
@@ -26,29 +87,30 @@ img {
   
   #catHealthBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(255, 0, 0);
   }
 
   #catHungerBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(0, 60, 255);
   }
 
   #catThirstBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(0, 255, 0);
   }
 
   #catContentBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(255, 0, 195);
   }
 
 
+  
 /* Dog below */
 
 #dogWrap {
@@ -64,29 +126,39 @@ img {
   
   #dogHealthBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(255, 0, 0);
   }
 
   #dogHungerBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(0, 60, 255);
   }
 
   #dogThirstBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(0, 255, 0);
   }
 
   #dogHappyBar {
     width: 100%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(255, 0, 195);
   }
 
-  body{
-    display: flex;
-    justify-content: center;
+  #healthPercent, #hungerPercent, #thirstPercent, #happyPercent {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+  }
+
+.interact-button{
+  font-size: larger;
+  font-family: 'Tektur', cursive;
+}
+
+.hidden {
+    display: none;
 }
