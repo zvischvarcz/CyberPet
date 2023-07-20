@@ -25,11 +25,39 @@ const deathScene = document.getElementById("deathScene");
 const endGameWrap = document.getElementById("endGameWrap")
 const restartButton = document.getElementById("restartButton")
 const errorEmpty = document.getElementById("errorEmpty")
-const healthProgress = document.getElementById("healthPercent");
-const hungerProgress = document.getElementById("hungerPercent");
-const thirstProgress = document.getElementById("thirstPercent");
-const happyProgress = document.getElementById("happyPercent");
+const healthProgress = document.getElementById("dogHealthPercent");
+const hungerProgress = document.getElementById("dogHungerPercent");
+const thirstProgress = document.getElementById("dogThirstPercent");
+const happyProgress = document.getElementById("dogHappyPercent");
+const catHealthProgress = document.getElementById("catHealthPercent");
+const catHungerProgress = document.getElementById("catHungerPercent");
+const catThirstProgress = document.getElementById("catThirstPercent");
+const catContentProgress = document.getElementById("catContentPercent");
 
+const dogSound = () => {
+    const audio = new Audio("./sounds/animals_dogs_x2_barking_small_001.mp3");
+    audio.play();
+}
+
+const catSound = () => {
+    const audio = new Audio("./sounds/zapsplat_cartoon_cat_meow_19819.mp3");
+    audio.play();
+}
+
+const eating = () => {
+    const audio = new Audio("./sounds/comedy_eating_munch.mp3");
+    audio.play();
+}
+
+const drinking = () => {
+    const audio = new Audio("./sounds/zapsplat_cartoon_big_lick_slurp_003_77622.mp3");
+    audio.play();
+}
+
+const fetch = () => {
+    const audio = new Audio("./sounds/foley_cable_whoosh_air_001.mp3");
+    audio.play();
+}
 
 
 class Animal {
@@ -78,12 +106,20 @@ class Cat extends Animal {
 }
 
 
-// const endGame = () => {
-//     endGameWrap.classList.remove("hidden")
-//     restartButton.addEventListener("click", () => {
-//         window.location.reload();
-//     })
-// }
+const endGame = () => {
+    endGameWrap.classList.remove("hidden");
+    endGameWrap.classList.add("endGameWrap");
+    catFeed.disabled = true;
+        catHydrate.disabled = true;
+        catPlay.disabled = true;
+        dogFeed.disabled = true;
+        dogHydrate.disabled = true;
+        dogPlay.disabled = true;
+    restartButton.addEventListener("click", () => {
+        window.location.reload();
+        
+    })
+}
 
 
 
@@ -96,6 +132,7 @@ const createCat = (name) => {
             
             playerCat.health = Math.max(playerCat.health - 5, 0);
             catHealth.style.width = `${playerCat.health}%`;
+            catHealthProgress.textContent = `${playerCat.health}%`;
             if (playerCat.health == 0){
                 deathScene.innerHTML = `Your beloved cat ${playerCat.name}, has died.`
                 endGame();
@@ -103,14 +140,17 @@ const createCat = (name) => {
     }
         playerCat.hunger = Math.max(playerCat.hunger - 5, 0);
         catHunger.style.width = `${playerCat.hunger}%`;
+        catHungerProgress.textContent = `${playerCat.hunger}%`;
         playerCat.thirst = Math.max(playerCat.thirst- 5, 0);
         catThirst.style.width = `${playerCat.thirst}%`;
+        catThirstProgress.textContent = `${playerCat.thirst}%`;
         playerCat.content = Math.max(playerCat.content - 5, 0);
         catContent.style.width = `${playerCat.content}%`;
+        catContentProgress.textContent = `${playerCat.content}%`;
         console.log(playerCat); 
-        setTimeout(timeoutStats, 500);  
+        setTimeout(timeoutStats, 200);  
     }
-    setTimeout(timeoutStats, 500);
+    setTimeout(timeoutStats, 200);
     catFeed.addEventListener("click", () => {
         playerCat.feed();
     })
@@ -137,7 +177,7 @@ const createDog = (name) => {
             dogHealth.style.width = `${playerDog.health}%`;
             healthProgress.textContent = `${playerDog.health}%`;
             if (playerDog.health == 0){
-                // deathScene.innerHTML = `Your beloved dog ${playerDog.name}, has died.`
+                deathScene.innerHTML = `Your beloved dog ${playerDog.name}, has died.`
                 endGame();
             }
     }   
@@ -152,17 +192,20 @@ const createDog = (name) => {
         dogHappy.style.width = `${playerDog.happy}%`;
         happyProgress.textContent = `${playerDog.happy}%`;
         console.log(playerDog); 
-        setTimeout(timeoutStats, 500);  
+        setTimeout(timeoutStats, 200);  
     }
-    setTimeout(timeoutStats, 500);
+    setTimeout(timeoutStats, 200);
     dogFeed.addEventListener("click", () => {
         playerDog.feed();
+        eating();
     })
     dogHydrate.addEventListener("click", () => {
         playerDog.hydrate();
+        drinking();
     })
     dogPlay.addEventListener("click", () => {
         playerDog.playFetch(); 
+        fetch()
     })
     
 }
@@ -182,8 +225,12 @@ createButton.addEventListener("click", () => {
             createCat(nameChosen)
         } else if (dogRadio.checked){
             createDog(nameChosen)
+        } 
+    } if (dogRadio.checked == true) {
+        dogSound() }
+        else {
+           catSound()
         }
-    }
 })
 
 

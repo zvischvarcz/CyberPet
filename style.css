@@ -6,6 +6,7 @@ body {
   background-color: rgb(212, 212, 212);
   background-image: url(./background-image.png);
   background-position-x: center;
+  background-position-y: center;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
@@ -148,15 +149,33 @@ img {
     background-color: rgb(255, 0, 195);
   }
 
-  #healthPercent, #hungerPercent, #thirstPercent, #happyPercent {
+ .percent {
     color: white;
     font-weight: bold;
     margin: 0;
+    text-align: center;
   }
 
 .interact-button{
   font-size: larger;
   font-family: 'Tektur', cursive;
+}
+
+/* .all-wrap{
+  position: absolute;
+} */
+.endGameWrap {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  padding: 5% 6%;
+  background-color: rgba(0, 0, 0, 0.866);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
 }
 
 .hidden {

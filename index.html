@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
     <title>Cyber Pet</title>
 </head>
 <body>
@@ -33,7 +34,7 @@
                     <p class="bar-text">Health:</p>
                     <div id="dogHealth" class="dog-health">
                         <div id="dogHealthBar">
-                            <p id="healthPercent"></p>
+                            <p id="dogHealthPercent"  class="percent">100%</p>
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,7 @@
                 <p class="bar-text">Hunger:</p>
                 <div class="dog-health">
                     <div id="dogHungerBar">
-                        <p id="hungerPercent"></p>
+                        <p id="dogHungerPercent"  class="percent"></p>
                     </div>
                 </div>
                 </div>
@@ -49,7 +50,7 @@
                 <p class="bar-text">Thirst:</p>
                 <div class="dog-health">
                     <div id="dogThirstBar">
-                        <p id="thirstPercent"></p>
+                    <p id="dogThirstPercent"  class="percent"></p>    
                     </div>
                 </div>
                 </div>
@@ -57,7 +58,7 @@
                 <p class="bar-text">Happiness:</p>
                 <div class="dog-health">
                     <div id="dogHappyBar">
-                        <p id="happyPercent"></p>
+                        <p id="dogHappyPercent" class="percent"></p>
                     </div>
                 </div>
                 </div>
@@ -79,6 +80,7 @@
                     <div id="catHealth" class="cat-health">
                         
                         <div id="catHealthBar">
+                            <p id="catHealthPercent" class="percent">100%</p>
                         </div>
                     </div>
                 </div>
@@ -86,6 +88,7 @@
                     <p class="bar-text">Hunger:</p>
                     <div class="cat-health">
                         <div id="catHungerBar">
+                            <p id="catHungerPercent" class="percent"></p>
                         </div>
                     </div>
                 </div>
@@ -93,6 +96,7 @@
                     <p class="bar-text">Thirst:</p>
                     <div class="cat-health">
                         <div id="catThirstBar">
+                            <p id="catThirstPercent" class="percent"></p>
                         </div>
                     </div>
                 </div>
@@ -100,6 +104,7 @@
                     <p class="bar-text">Content:</p>
                     <div class="cat-health">
                         <div id="catContentBar">
+                            <p id="catContentPercent" class="percent"></p>
                         </div>
                     </div>
                 </div>
@@ -111,14 +116,14 @@
             </div>
         </div>
     </div>
-    <div>
+    
+        
+    
+    <div id="endGameWrap" class="hidden endGameWrap">
         <p id="deathScene"></p>
-    </div>
-    <div id="endGameWrap" class="hidden">
         <h2>Do you want to play again?</h2>
         <button id="restartButton">Yes</button>
     </div>
-    
 
     <script src="script.js"></script>
 </body>
