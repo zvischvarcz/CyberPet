@@ -1,18 +1,8 @@
 const introWrap = document.getElementById("introWrap");
 const createButton = document.getElementById("createButton");
-const catRadio = document.getElementById("catRadio");
+// dog
 const dogRadio = document.getElementById("dogRadio");
-const nameInput = document.getElementById("nameInput");
-const catWrap = document.getElementById("catWrap");
 const dogWrap = document.getElementById("dogWrap");
-const catName = document.getElementById("catName");
-const catHealth = document.getElementById("catHealthBar");
-const catHunger = document.getElementById("catHungerBar");
-const catThirst = document.getElementById("catThirstBar");
-const catContent = document.getElementById("catContentBar");
-const catFeed = document.getElementById("catFeed");
-const catHydrate = document.getElementById("catHydrate");
-const catPlay = document.getElementById("catPlay");
 const dogName = document.getElementById("dogName");
 const dogHealth = document.getElementById("dogHealthBar");
 const dogHunger = document.getElementById("dogHungerBar");
@@ -21,18 +11,54 @@ const dogHappy = document.getElementById("dogHappyBar");
 const dogFeed = document.getElementById("dogFeed");
 const dogHydrate = document.getElementById("dogHydrate");
 const dogPlay = document.getElementById("dogPlay");
-const deathScene = document.getElementById("deathScene");
-const endGameWrap = document.getElementById("endGameWrap")
-const restartButton = document.getElementById("restartButton")
-const errorEmpty = document.getElementById("errorEmpty")
 const healthProgress = document.getElementById("dogHealthPercent");
 const hungerProgress = document.getElementById("dogHungerPercent");
 const thirstProgress = document.getElementById("dogThirstPercent");
 const happyProgress = document.getElementById("dogHappyPercent");
+const dogPicture = document.getElementById("dogPicture")
+
+// Cat
+const catRadio = document.getElementById("catRadio");
+const catName = document.getElementById("catName");
+const catHealth = document.getElementById("catHealthBar");
+const catHunger = document.getElementById("catHungerBar");
+const catThirst = document.getElementById("catThirstBar");
+const catContent = document.getElementById("catContentBar");
+const catFeed = document.getElementById("catFeed");
+const catHydrate = document.getElementById("catHydrate");
+const catPlay = document.getElementById("catPlay");
+const catWrap = document.getElementById("catWrap");
 const catHealthProgress = document.getElementById("catHealthPercent");
 const catHungerProgress = document.getElementById("catHungerPercent");
 const catThirstProgress = document.getElementById("catThirstPercent");
 const catContentProgress = document.getElementById("catContentPercent");
+const catPicture = document.getElementById("catPicture")
+
+// Hamster
+const hamsterRadio = document.getElementById("hamsterRadio");
+const hamsterName = document.getElementById("hamsterName");
+const hamsterHealth = document.getElementById("hamsterHealthBar");
+const hamsterHunger = document.getElementById("hamsterHungerBar");
+const hamsterThirst = document.getElementById("hamsterThirstBar");
+const hamsterExercise = document.getElementById("hamsterExerciseBar");
+const hamsterFeed = document.getElementById("hamsterFeed");
+const hamsterHydrate = document.getElementById("hamsterHydrate");
+const hamsterWheel = document.getElementById("hamsterWheel");
+const hamsterWrap = document.getElementById("hamsterWrap");
+const hamsterHealthProgress = document.getElementById("hamsterHealthPercent");
+const hamsterHungerProgress = document.getElementById("hamsterHungerPercent");
+const hamsterThirstProgress = document.getElementById("hamsterThirstPercent");
+const hamsterExerciseProgress = document.getElementById("hamsterExercisePercent");
+const hamsterPicture = document.getElementById("hamsterPicture")
+
+
+const nameInput = document.getElementById("nameInput");
+const deathScene = document.getElementById("deathScene");
+const endGameWrap = document.getElementById("endGameWrap")
+const restartButton = document.getElementById("restartButton")
+const errorEmpty = document.getElementById("errorEmpty")
+
+
 
 const dogSound = () => {
     const audio = new Audio("./sounds/animals_dogs_x2_barking_small_001.mp3");
@@ -41,6 +67,11 @@ const dogSound = () => {
 
 const catSound = () => {
     const audio = new Audio("./sounds/zapsplat_cartoon_cat_meow_19819.mp3");
+    audio.play();
+}
+
+const hamsterSound = () => {
+    const audio = new Audio("./sounds/cartoon_mouse_laughter_1.mp3");
     audio.play();
 }
 
@@ -59,6 +90,10 @@ const fetch = () => {
     audio.play();
 }
 
+const wheel = () => {
+    const audio = new Audio("./sounds/zapsplat_foley_plastic_hamster_wheel_spin_by_hand_001_49624.mp3");
+    audio.play();
+}
 
 class Animal {
     constructor(name){
@@ -105,6 +140,19 @@ class Cat extends Animal {
     }
 }
 
+class Hamster extends Animal {
+    constructor(name){
+        super(name)
+        this.name = name;
+        this.exercise = 100;
+    }
+
+    playWheel () {
+        this.exercise = Math.min(this.exercise + 10, 100);
+    }
+}
+
+
 
 const endGame = () => {
     endGameWrap.classList.remove("hidden");
@@ -115,6 +163,10 @@ const endGame = () => {
         dogFeed.disabled = true;
         dogHydrate.disabled = true;
         dogPlay.disabled = true;
+        hamsterFeed.disabled = true;
+        hamsterHydrate.disabled = true;
+        hamsterWheel.disabled = true;
+        
     restartButton.addEventListener("click", () => {
         window.location.reload();
         
@@ -133,6 +185,11 @@ const createCat = (name) => {
             playerCat.health = Math.max(playerCat.health - 5, 0);
             catHealth.style.width = `${playerCat.health}%`;
             catHealthProgress.textContent = `${playerCat.health}%`;
+            if (playerCat.health < 50){
+                catPicture.src = "./images/sad-cat.jpg"
+            } else {
+                catPicture.src = "./images/happy-cat.jpg"
+            }
             if (playerCat.health == 0){
                 deathScene.innerHTML = `Your beloved cat ${playerCat.name}, has died.`
                 endGame();
@@ -141,10 +198,10 @@ const createCat = (name) => {
         playerCat.hunger = Math.max(playerCat.hunger - 5, 0);
         catHunger.style.width = `${playerCat.hunger}%`;
         catHungerProgress.textContent = `${playerCat.hunger}%`;
-        playerCat.thirst = Math.max(playerCat.thirst- 5, 0);
+        playerCat.thirst = Math.max(playerCat.thirst- 3, 0);
         catThirst.style.width = `${playerCat.thirst}%`;
         catThirstProgress.textContent = `${playerCat.thirst}%`;
-        playerCat.content = Math.max(playerCat.content - 5, 0);
+        playerCat.content = Math.max(playerCat.content - 2, 0);
         catContent.style.width = `${playerCat.content}%`;
         catContentProgress.textContent = `${playerCat.content}%`;
         console.log(playerCat); 
@@ -176,19 +233,24 @@ const createDog = (name) => {
             playerDog.health = Math.max(playerDog.health - 5, 0);
             dogHealth.style.width = `${playerDog.health}%`;
             healthProgress.textContent = `${playerDog.health}%`;
+            if (playerDog.health < 50){
+                dogPicture.src = "./images/sad-dog.jpg"
+            } else {
+                dogPicture.src = "./images/happy-dog.png"
+            }
             if (playerDog.health == 0){
                 deathScene.innerHTML = `Your beloved dog ${playerDog.name}, has died.`
                 endGame();
             }
     }   
         
-        playerDog.hunger = Math.max(playerDog.hunger - 5, 0);
+        playerDog.hunger = Math.max(playerDog.hunger - 4, 0);
         dogHunger.style.width = `${playerDog.hunger}%`;
         hungerProgress.textContent = `${playerDog.hunger}%`;
-        playerDog.thirst = Math.max(playerDog.thirst- 5, 0);
+        playerDog.thirst = Math.max(playerDog.thirst- 3, 0);
         dogThirst.style.width = `${playerDog.thirst}%`;
         thirstProgress.textContent = `${playerDog.thirst}%`;
-        playerDog.happy = Math.max(playerDog.happy - 5, 0);
+        playerDog.happy = Math.max(playerDog.happy - 2, 0);
         dogHappy.style.width = `${playerDog.happy}%`;
         happyProgress.textContent = `${playerDog.happy}%`;
         console.log(playerDog); 
@@ -209,14 +271,58 @@ const createDog = (name) => {
     })
     
 }
+
+
+const createHamster = (name) => {
+    hamsterWrap.classList.remove("hidden");
+    const playerHamster = new Hamster(name);
+    hamsterName.textContent = `${name} The hamster`
+    const timeoutStats = () => {
+        if (playerHamster.hunger == 0 || playerHamster.thirst == 0 || playerHamster.exercise == 0){
+            playerHamster.health = Math.max(playerHamster.health - 5, 0);
+            hamsterHealth.style.width = `${playerHamster.health}%`;
+            hamsterHealthProgress.textContent = `${playerHamster.health}%`;
+            } if (playerHamster.health < 50){
+                hamsterPicture.src = "./images/sad-hamster.jpg"
+            } else {
+                hamsterPicture.src = "./images/happy-hamster.jpg"
+            }
+            if (playerHamster.health == 0){
+                deathScene.innerHTML = `Your beloved hamster ${playerHamster.name}, has died.`
+                endGame();
+            }
+        
     
-
-
-
+        playerHamster.hunger = Math.max(playerHamster.hunger - 4, 0);
+        hamsterHunger.style.width = `${playerHamster.hunger}%`;
+        hamsterHungerProgress.textContent = `${playerHamster.hunger}%`;
+        playerHamster.thirst = Math.max(playerHamster.thirst- 3, 0);
+        hamsterThirst.style.width = `${playerHamster.thirst}%`;
+        hamsterThirstProgress.textContent = `${playerHamster.thirst}%`;
+        playerHamster.exercise = Math.max(playerHamster.exercise - 2, 0);
+        hamsterExercise.style.width = `${playerHamster.exercise}%`;
+        hamsterExerciseProgress.textContent = `${playerHamster.exercise}%`;
+        console.log(playerHamster); 
+        setTimeout(timeoutStats, 200);  
+    }
+    setTimeout(timeoutStats, 200);
+    hamsterFeed.addEventListener("click", () => {
+        playerHamster.feed();
+        eating()
+    })
+    hamsterHydrate.addEventListener("click", () => {
+        playerHamster.hydrate();
+        drinking()
+    })
+    hamsterWheel.addEventListener("click", () => {
+      playerHamster.playWheel();
+      wheel()
+    }) 
+    }
 
 
 createButton.addEventListener("click", () => {
-    if((catRadio.checked == false && dogRadio.checked == false) || nameInput.value == ""){
+    if((catRadio.checked == false && dogRadio.checked == false && hamsterRadio.checked == false) || nameInput.value == ""){
         errorEmpty.classList.remove("hidden")
     } else{
         introWrap.classList.add("hidden")
@@ -225,12 +331,16 @@ createButton.addEventListener("click", () => {
             createCat(nameChosen)
         } else if (dogRadio.checked){
             createDog(nameChosen)
-        } 
-    } if (dogRadio.checked == true) {
-        dogSound() }
-        else {
-           catSound()
+        } else if (hamsterRadio.checked){
+            createHamster(nameChosen);
         }
+     if (dogRadio.checked == true) {
+        dogSound() }
+        else if (catRadio.checked == true) {
+           catSound()
+        } else 
+        hamsterSound()
+    }
 })
 
 

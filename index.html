@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
     <title>Cyber Pet</title>
 </head>
 <body>
@@ -12,9 +12,11 @@
         <div class="intro-item"><h1>Choose your pet</h1></div>
         <div>
             <input type="radio" id="dogRadio" name="cat-dog-radio">
-            <label for="dog-radio">Dog</label>
+            <label for="dogRadio">Dog</label>
             <input type="radio" id="catRadio" name="cat-dog-radio">
-            <label for="cat-radio">Cat</label>
+            <label for="catRadio">Cat</label>
+            <input type="radio" id="hamsterRadio" name="cat-dog-radio">
+            <label for="hamsterRadio">Hamster</label>
         </div>
         <div class="intro-item">
             <label for="name-input">Name:</label>
@@ -22,13 +24,14 @@
         </div class="intro-item">
             <button id="createButton">Create Pet!</button>
             <p id="errorEmpty" class="hidden">Please choose an animal type and enter a name</p>
-        </div>
     </div>
     
     <div id="dogWrap" class="hidden animal-wrap">
         <div class="animal-wrap-inner">
             <h2 id="dogName"></h2>
-            <img src="./dog-img.jpg">
+            <div class="animal-img-wrap">
+                <img src="./images/happy-dog.png" id="dogPicture">
+            </div>
             <div class="bar-wrap">
                 <div class="each-bar-wrap">
                     <p class="bar-text">Health:</p>
@@ -73,7 +76,9 @@
     <div id="catWrap"  class="hidden">
         <div class="animal-wrap-inner">
             <h2 id="catName"></h2>
-            <img src="./cat-img.jpg">
+            <div class="animal-img-wrap">
+                <img src="./images/happy-cat.jpg" id="catPicture">
+            </div>
             <div class="bar-wrap">
                 <div class="each-bar-wrap">
                     <p class="bar-text">Health:</p>
@@ -113,6 +118,54 @@
                 <button id="catFeed" class="interact-button">Feed</button>
                 <button id="catHydrate" class="interact-button">Hydrate</button>
                 <button id="catPlay" class="interact-button">Play with wool</button>
+            </div>
+        </div>
+    </div>
+    <!-- Hamster below -->
+    <div id="hamsterWrap" class="hidden animal-wrap">
+        <div class="animal-wrap-inner">
+            <h2 id="hamsterName"></h2>
+            <div class="animal-img-wrap">
+                <img src="./images/happy-hamster.jpg" id="hamsterPicture">
+            </div>
+            <div class="bar-wrap">
+                <div class="each-bar-wrap">
+                    <p class="bar-text">Health:</p>
+                    <div id="hamsterHealth" class="hamster-health">
+                        <div id="hamsterHealthBar">
+                            <p id="hamsterHealthPercent"  class="percent">100%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="each-bar-wrap">
+                <p class="bar-text">Hunger:</p>
+                <div class="hamster-health">
+                    <div id="hamsterHungerBar">
+                        <p id="hamsterHungerPercent"  class="percent"></p>
+                    </div>
+                </div>
+                </div>
+                <div class="each-bar-wrap">
+                <p class="bar-text">Thirst:</p>
+                <div class="hamster-health">
+                    <div id="hamsterThirstBar">
+                    <p id="hamsterThirstPercent"  class="percent"></p>    
+                    </div>
+                </div>
+                </div>
+                <div class="each-bar-wrap">
+                <p class="bar-text">Exercise:</p>
+                <div class="hamster-health">
+                    <div id="hamsterExerciseBar">
+                        <p id="hamsterExercisePercent" class="percent"></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div>
+                <button id="hamsterFeed" class="interact-button">Feed</button>
+                <button id="hamsterHydrate" class="interact-button">Hydrate</button>
+                <button id="hamsterWheel" class="interact-button">Hamster wheel</button>
             </div>
         </div>
     </div>
