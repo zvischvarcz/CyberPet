@@ -16,6 +16,10 @@ const hungerProgress = document.getElementById("dogHungerPercent");
 const thirstProgress = document.getElementById("dogThirstPercent");
 const happyProgress = document.getElementById("dogHappyPercent");
 const dogPicture = document.getElementById("dogPicture")
+const dogHungerSprite = document.getElementById("dogHungerSprite");
+const dogHealthSprite = document.getElementById("dogHealthSprite");
+const dogThirstSprite = document.getElementById("dogThirstSprite");
+const dogPlaySprite = document.getElementById("dogPlaySprite");
 
 // Cat
 const catRadio = document.getElementById("catRadio");
@@ -32,7 +36,11 @@ const catHealthProgress = document.getElementById("catHealthPercent");
 const catHungerProgress = document.getElementById("catHungerPercent");
 const catThirstProgress = document.getElementById("catThirstPercent");
 const catContentProgress = document.getElementById("catContentPercent");
-const catPicture = document.getElementById("catPicture")
+const catPicture = document.getElementById("catPicture");
+const catHungerSprite = document.getElementById("catHungerSprite");
+const catHealthSprite = document.getElementById("catHealthSprite");
+const catThirstSprite = document.getElementById("catThirstSprite");
+const catContentSprite = document.getElementById("catContentSprite");
 
 // Hamster
 const hamsterRadio = document.getElementById("hamsterRadio");
@@ -50,6 +58,10 @@ const hamsterHungerProgress = document.getElementById("hamsterHungerPercent");
 const hamsterThirstProgress = document.getElementById("hamsterThirstPercent");
 const hamsterExerciseProgress = document.getElementById("hamsterExercisePercent");
 const hamsterPicture = document.getElementById("hamsterPicture")
+const hamsterHungerSprite = document.getElementById("hamsterHungerSprite");
+const hamsterHealthSprite = document.getElementById("hamsterHealthSprite");
+const hamsterThirstSprite = document.getElementById("hamsterThirstSprite");
+const hamsterWheelSprite = document.getElementById("hamsterWheelSprite");
 
 
 const nameInput = document.getElementById("nameInput");
@@ -179,8 +191,10 @@ const createCat = (name) => {
             catHealthProgress.textContent = `${playerCat.health}%`;
             if (playerCat.health < 50){
                 catPicture.src = "./images/sad-cat.jpg"
+                catHealthSprite.classList.remove("hidden");
             } else {
                 catPicture.src = "./images/happy-cat.jpg"
+                catHealthSprite.classList.add("hidden");
             }
             if (playerCat.health == 0){
                 deathScene.textContent = `Your beloved cat ${playerCat.name}, has died.`
@@ -189,11 +203,26 @@ const createCat = (name) => {
     }
         playerCat.hunger = Math.max(playerCat.hunger - 5, 0);
         catHunger.style.width = `${playerCat.hunger}%`;
+        if (playerCat.hunger < 50){
+            catHungerSprite.classList.remove("hidden");
+        }else {
+            catHungerSprite.classList.add("hidden");
+        }
         catHungerProgress.textContent = `${playerCat.hunger}%`;
         playerCat.thirst = Math.max(playerCat.thirst- 3, 0);
+        if (playerCat.thirst < 50){
+            catThirstSprite.classList.remove("hidden");
+        }else {
+            catThirstSprite.classList.add("hidden");
+        }
         catThirst.style.width = `${playerCat.thirst}%`;
         catThirstProgress.textContent = `${playerCat.thirst}%`;
         playerCat.content = Math.max(playerCat.content - 2, 0);
+        if (playerCat.content < 50){
+            catContentSprite.classList.remove("hidden");
+        }else {
+            catContentSprite.classList.add("hidden");
+        }
         catContent.style.width = `${playerCat.content}%`;
         catContentProgress.textContent = `${playerCat.content}%`;
         setTimeout(timeoutStats, 500);  
@@ -228,8 +257,10 @@ const createDog = (name) => {
             healthProgress.textContent = `${playerDog.health}%`;
             if (playerDog.health < 50){
                 dogPicture.src = "./images/sad-dog.jpg"
+                dogHealthSprite.classList.remove("hidden");
             } else {
                 dogPicture.src = "./images/happy-dog.png"
+                dogHealthSprite.classList.add("hidden");
             }
             if (playerDog.health == 0){
                 deathScene.textContent = `Your beloved dog ${playerDog.name}, has died.`
@@ -238,12 +269,27 @@ const createDog = (name) => {
     }   
         
         playerDog.hunger = Math.max(playerDog.hunger - 4, 0);
+        if (playerDog.hunger < 50){
+            dogHungerSprite.classList.remove("hidden");
+        }else {
+            dogHungerSprite.classList.add("hidden");
+        }
         dogHunger.style.width = `${playerDog.hunger}%`;
         hungerProgress.textContent = `${playerDog.hunger}%`;
         playerDog.thirst = Math.max(playerDog.thirst- 3, 0);
+        if (playerDog.thirst < 50){
+            dogThirstSprite.classList.remove("hidden");
+        }else {
+            dogThirstSprite.classList.add("hidden");
+        }
         dogThirst.style.width = `${playerDog.thirst}%`;
         thirstProgress.textContent = `${playerDog.thirst}%`;
         playerDog.happy = Math.max(playerDog.happy - 2, 0);
+        if (playerDog.happy < 50){
+            dogPlaySprite.classList.remove("hidden");
+        }else {
+            dogPlaySprite.classList.add("hidden");
+        }
         dogHappy.style.width = `${playerDog.happy}%`;
         happyProgress.textContent = `${playerDog.happy}%`; 
         setTimeout(timeoutStats, 500);  
@@ -276,8 +322,10 @@ const createHamster = (name) => {
             hamsterHealthProgress.textContent = `${playerHamster.health}%`;
             } if (playerHamster.health < 50){
                 hamsterPicture.src = "./images/sad-hamster.jpg"
+                hamsterHealthSprite.classList.remove("hidden");
             } else {
                 hamsterPicture.src = "./images/happy-hamster.jpg"
+                hamsterHealthSprite.classList.add("hidden");
             }
             if (playerHamster.health == 0){
                 deathScene.textContent = `Your beloved hamster ${playerHamster.name}, has died.`
@@ -286,12 +334,27 @@ const createHamster = (name) => {
         
     
         playerHamster.hunger = Math.max(playerHamster.hunger - 4, 0);
+        if (playerHamster.hunger < 50){
+            hamsterHungerSprite.classList.remove("hidden");
+        }else {
+            hamsterHungerSprite.classList.add("hidden");
+        }
         hamsterHunger.style.width = `${playerHamster.hunger}%`;
         hamsterHungerProgress.textContent = `${playerHamster.hunger}%`;
         playerHamster.thirst = Math.max(playerHamster.thirst- 3, 0);
+        if (playerHamster.thirst < 50){
+            hamsterThirstSprite.classList.remove("hidden");
+        }else {
+            hamsterThirstSprite.classList.add("hidden");
+        }
         hamsterThirst.style.width = `${playerHamster.thirst}%`;
         hamsterThirstProgress.textContent = `${playerHamster.thirst}%`;
         playerHamster.exercise = Math.max(playerHamster.exercise - 2, 0);
+        if (playerHamster.exercise < 50){
+            hamsterWheelSprite.classList.remove("hidden");
+        }else {
+            hamsterWheelSprite.classList.add("hidden");
+        }
         hamsterExercise.style.width = `${playerHamster.exercise}%`;
         hamsterExerciseProgress.textContent = `${playerHamster.exercise}%`;
         setTimeout(timeoutStats, 500);  

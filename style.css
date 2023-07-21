@@ -70,10 +70,31 @@ button{
   margin: 0;
 }
 
-img {
+.animal-img {
     min-width: 10vw;
     max-width: 16%;
     margin: 0;
+}
+
+.sprite-wrap {
+  width: 5vw;
+}
+
+.sprites{
+  width: 2vw;
+  animation-name: zoom;
+  animation: zoom 2s 0s infinite;
+}
+@keyframes zoom{
+  0%, 100% {
+    width: 2vw;
+  }
+  0%, 100% {
+    width: 2vw;
+  }
+  50% {
+    width: 3vw;
+  }
 }
 
 .bar-wrap {
