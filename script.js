@@ -57,43 +57,35 @@ const deathScene = document.getElementById("deathScene");
 const endGameWrap = document.getElementById("endGameWrap")
 const restartButton = document.getElementById("restartButton")
 const errorEmpty = document.getElementById("errorEmpty")
+const totalTimePlayed = document.getElementById("totalTimePlayed")
 
 
+const deadSong = new Audio("./sounds/acdc.mp3")
+const dogSound  = new Audio("./sounds/animals_dogs_x2_barking_small_001.mp3");
+const catSound =  new Audio("./sounds/zapsplat_cartoon_cat_meow_19819.mp3");
+const hamsterSound = new Audio("./sounds/cartoon_mouse_laughter_1.mp3");
+const eatingSound = new Audio("./sounds/comedy_eating_munch.mp3");
+const drinkingSound = new Audio("./sounds/zapsplat_cartoon_big_lick_slurp_003_77622.mp3");
+const fetchSound =  new Audio("./sounds/foley_cable_whoosh_air_001.mp3");
+const wheelSound = new Audio("./sounds/zapsplat_foley_plastic_hamster_wheel_spin_by_hand_001_49624.mp3");
+    
 
-const dogSound = () => {
-    const audio = new Audio("./sounds/animals_dogs_x2_barking_small_001.mp3");
-    audio.play();
+let secondsPassed = 0;
+let timeOutTotal;
+
+const timer = () => {
+    secondsPassed ++;
+    timeOutTotal = setTimeout(timer, 1000);
 }
 
-const catSound = () => {
-    const audio = new Audio("./sounds/zapsplat_cartoon_cat_meow_19819.mp3");
-    audio.play();
+const timeDivider = (secondsPassed) => {
+        minutesPassed = Math.floor(secondsPassed / 60);
+        secondsPassed = secondsPassed % 60;
+        return `Your pet survived for ${minutesPassed} minutes and ${secondsPassed} seconds`
+    
 }
 
-const hamsterSound = () => {
-    const audio = new Audio("./sounds/cartoon_mouse_laughter_1.mp3");
-    audio.play();
-}
 
-const eating = () => {
-    const audio = new Audio("./sounds/comedy_eating_munch.mp3");
-    audio.play();
-}
-
-const drinking = () => {
-    const audio = new Audio("./sounds/zapsplat_cartoon_big_lick_slurp_003_77622.mp3");
-    audio.play();
-}
-
-const fetch = () => {
-    const audio = new Audio("./sounds/foley_cable_whoosh_air_001.mp3");
-    audio.play();
-}
-
-const wheel = () => {
-    const audio = new Audio("./sounds/zapsplat_foley_plastic_hamster_wheel_spin_by_hand_001_49624.mp3");
-    audio.play();
-}
 
 class Animal {
     constructor(name){
@@ -105,13 +97,11 @@ class Animal {
 
    feed () {
     this.hunger = Math.min(this.hunger + 10, 100);
-    this.health = Math.min(this.health + 2, 100);
-    this.thirst = Math.min(this.thirst - 10, 100);
+    this.thirst = Math.min(this.thirst - 5, 100);
    }
 
    hydrate () {
     this.thirst = Math.min(this.thirst + 10, 100);
-    this.health = Math.min(this.health + 2, 100);
    }
 }
 
@@ -155,18 +145,20 @@ class Hamster extends Animal {
 
 
 const endGame = () => {
+
     endGameWrap.classList.remove("hidden");
-    endGameWrap.classList.add("endGameWrap");
     catFeed.disabled = true;
-        catHydrate.disabled = true;
-        catPlay.disabled = true;
-        dogFeed.disabled = true;
-        dogHydrate.disabled = true;
-        dogPlay.disabled = true;
-        hamsterFeed.disabled = true;
-        hamsterHydrate.disabled = true;
-        hamsterWheel.disabled = true;
-        
+    catHydrate.disabled = true;
+    catPlay.disabled = true;
+    dogFeed.disabled = true;
+    dogHydrate.disabled = true;
+    dogPlay.disabled = true;
+    hamsterFeed.disabled = true;
+    hamsterHydrate.disabled = true;
+    hamsterWheel.disabled = true;
+    deadSong.play();
+    totalTimePlayed.textContent = `${timeDivider(secondsPassed)}`;
+    clearTimeout(timeOutTotal);
     restartButton.addEventListener("click", () => {
         window.location.reload();
         
@@ -191,7 +183,7 @@ const createCat = (name) => {
                 catPicture.src = "./images/happy-cat.jpg"
             }
             if (playerCat.health == 0){
-                deathScene.innerHTML = `Your beloved cat ${playerCat.name}, has died.`
+                deathScene.textContent = `Your beloved cat ${playerCat.name}, has died.`
                 endGame();
             }
     }
@@ -204,15 +196,16 @@ const createCat = (name) => {
         playerCat.content = Math.max(playerCat.content - 2, 0);
         catContent.style.width = `${playerCat.content}%`;
         catContentProgress.textContent = `${playerCat.content}%`;
-        console.log(playerCat); 
-        setTimeout(timeoutStats, 200);  
+        setTimeout(timeoutStats, 500);  
     }
-    setTimeout(timeoutStats, 200);
+    setTimeout(timeoutStats, 500);
     catFeed.addEventListener("click", () => {
         playerCat.feed();
+        eatingSound.play();
     })
     catHydrate.addEventListener("click", () => {
         playerCat.hydrate();
+        drinkingSound.play();
     })
     catPlay.addEventListener("click", () => {
         playerCat.playWool();
@@ -239,7 +232,7 @@ const createDog = (name) => {
                 dogPicture.src = "./images/happy-dog.png"
             }
             if (playerDog.health == 0){
-                deathScene.innerHTML = `Your beloved dog ${playerDog.name}, has died.`
+                deathScene.textContent = `Your beloved dog ${playerDog.name}, has died.`
                 endGame();
             }
     }   
@@ -252,22 +245,21 @@ const createDog = (name) => {
         thirstProgress.textContent = `${playerDog.thirst}%`;
         playerDog.happy = Math.max(playerDog.happy - 2, 0);
         dogHappy.style.width = `${playerDog.happy}%`;
-        happyProgress.textContent = `${playerDog.happy}%`;
-        console.log(playerDog); 
-        setTimeout(timeoutStats, 200);  
+        happyProgress.textContent = `${playerDog.happy}%`; 
+        setTimeout(timeoutStats, 500);  
     }
-    setTimeout(timeoutStats, 200);
+    setTimeout(timeoutStats, 500);
     dogFeed.addEventListener("click", () => {
         playerDog.feed();
-        eating();
+        eatingSound.play();
     })
     dogHydrate.addEventListener("click", () => {
         playerDog.hydrate();
-        drinking();
+        drinkingSound.play();
     })
     dogPlay.addEventListener("click", () => {
         playerDog.playFetch(); 
-        fetch()
+        fetchSound.play()
     })
     
 }
@@ -288,7 +280,7 @@ const createHamster = (name) => {
                 hamsterPicture.src = "./images/happy-hamster.jpg"
             }
             if (playerHamster.health == 0){
-                deathScene.innerHTML = `Your beloved hamster ${playerHamster.name}, has died.`
+                deathScene.textContent = `Your beloved hamster ${playerHamster.name}, has died.`
                 endGame();
             }
         
@@ -302,21 +294,20 @@ const createHamster = (name) => {
         playerHamster.exercise = Math.max(playerHamster.exercise - 2, 0);
         hamsterExercise.style.width = `${playerHamster.exercise}%`;
         hamsterExerciseProgress.textContent = `${playerHamster.exercise}%`;
-        console.log(playerHamster); 
-        setTimeout(timeoutStats, 200);  
+        setTimeout(timeoutStats, 500);  
     }
-    setTimeout(timeoutStats, 200);
+    setTimeout(timeoutStats, 500);
     hamsterFeed.addEventListener("click", () => {
         playerHamster.feed();
-        eating()
+        eatingSound.play()
     })
     hamsterHydrate.addEventListener("click", () => {
         playerHamster.hydrate();
-        drinking()
+        drinkingSound.play()
     })
     hamsterWheel.addEventListener("click", () => {
       playerHamster.playWheel();
-      wheel()
+      wheelSound.play()
     }) 
     }
 
@@ -334,15 +325,21 @@ createButton.addEventListener("click", () => {
         } else if (hamsterRadio.checked){
             createHamster(nameChosen);
         }
-     if (dogRadio.checked == true) {
-        dogSound() }
-        else if (catRadio.checked == true) {
-           catSound()
-        } else 
-        hamsterSound()
+        if (dogRadio.checked == true) {
+            dogSound.play() }
+            else if (catRadio.checked == true) {
+            catSound.play()
+            } else 
+            hamsterSound.play()
     }
 })
 
+createButton.addEventListener("click", () => {
+    if((catRadio.checked == false && dogRadio.checked == false && hamsterRadio.checked == false) || nameInput.value == ""){
+    } else{
+        timer();
+    }
+})
 
 
 
